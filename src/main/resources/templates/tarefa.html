@@ -24,7 +24,13 @@
   <form th:action="@{/realiza/{id}(id=${tarefa.id})}" th:method="post">
     <button name="realiza" class="btn-realizar" id="btn-realiza-tarefa" onclick="sucessoRealizar()">Realizar</button>
   </form>
-    <br>
+  <br>
+
+  <form th:action="@{/edita/{id}(id=${tarefa.id})}" th:method="get">
+    <button name="editar" class="btn-editar" id="btn-editar-tarefa">Editar</button>
+  </form>
+
+  <br>
   <form th:action="@{/{id}(id=${tarefa.id})}" th:method="delete">
     <button name="exclui" class="btn-excluir" id="btn-exclui-tarefa" onclick="sucessoExcluir()">Excluir</button>
   </form>

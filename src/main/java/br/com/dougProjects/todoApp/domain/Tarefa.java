@@ -33,5 +33,4 @@ public class Tarefa extends AbstractPersistable<Long> {
     public void addRealizacoes() {
         this.qtdRealizacoes += 1;
     }
-
 }

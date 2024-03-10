@@ -25,9 +25,26 @@ public class TarefaController {
         tarefaRepository.save(t);
         return "tarefa";
     }
+    @GetMapping("/edita/{id}")
+    public String getTaskEditId(Model model, @PathVariable Long id) {
+        Tarefa t = tarefaRepository.getReferenceById(id);
+        model.addAttribute("tarefa", t);
+        tarefaRepository.save(t);
+        return "edit";
+    }
     @PostMapping("/")
     public String addTask(@RequestParam String nome, @RequestParam String descricao) {
         tarefaRepository.save(new Tarefa(nome, descricao));
+        return "redirect:/";
+    }
+    @PostMapping("/edita/{id}")
+    public String editTask(@PathVariable Long id, @RequestParam String nome, @RequestParam String descricao) {
+        Tarefa tarefa = tarefaRepository.getReferenceById(id);
+        tarefa.setNome(nome);
+        tarefa.setDescricao(descricao);
+        tarefa.setQtdvisualizado(0);
+        tarefa.setQtdRealizacoes(0);
+        tarefaRepository.save(tarefa);
         return "redirect:/";
     }
     @PostMapping("/realiza/{id}")
@@ -37,6 +54,7 @@ public class TarefaController {
         tarefaRepository.save(tarefa);
         return "redirect:/";
     }
+
     @DeleteMapping("/{id}")
     public String deleteTask(@PathVariable Long id) {
         Tarefa tarefa = tarefaRepository.getReferenceById(id);
