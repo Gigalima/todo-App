@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pessoas</title>
+</head>
+<body>
+<h1>Lista de Tarefas</h1>
+<h2>Nome das tarefas</h2>
+<p th:each="tarefa : ${tarefas}">
+    <a th:href="@{/{id}(id=${tarefa.id})}"><span th:text="${tarefa.nome}"></span></a>
+<h2>Adicionar Tarefa</h2>
+<form th:action="@{/}" method="POST">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome">
+    <label for="descricao">Descricao:</label>
+    <input type="text" id="descricao" name="descricao">
+    <input type="submit" value="OK">
+</form>
+</body>
+</html>

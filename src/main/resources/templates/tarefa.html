@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/styles/style.css}">
+  <title>Tarefa</title>
+</head>
+<body>
+  <script>
+        function sucessoExcluir() {
+                alert("Tarefa excluida com sucesso")
+        }
+
+        function sucessoRealizar() {
+            alert("Tarefa realizada com sucesso!")
+        }
+    </script>
+  <h1 th:text="${tarefa.nome}">Tarefa</h1>
+  <p th:text="${tarefa.descricao}">Descrição da tarefa</p>
+  <p class="p-realizado" th:text="${'Quantidade de realizações desta tarefa: ' + tarefa.qtdRealizacoes}">Qtd. de Realizações</p>
+  <p th:text="${'Quantidade de visualizações desta tarefa: ' + tarefa.qtdvisualizado}">Qtd. de visualizações</p>
+
+  <form th:action="@{/realiza/{id}(id=${tarefa.id})}" th:method="post">
+    <button name="realiza" class="btn-realizar" id="btn-realiza-tarefa" onclick="sucessoRealizar()">Realizar</button>
+  </form>
+    <br>
+  <form th:action="@{/{id}(id=${tarefa.id})}" th:method="delete">
+    <button name="exclui" class="btn-excluir" id="btn-exclui-tarefa" onclick="sucessoExcluir()">Excluir</button>
+  </form>
+  <br>
+  <p><a th:href="@{/}">Lista de tarefas</a></p>
+
+</body>
+</html>
